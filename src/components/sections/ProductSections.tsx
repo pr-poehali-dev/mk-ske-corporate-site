@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 import { PRODUCTS, SERVICES, TEAM, Label } from '@/lib/site-data';
 
+type TeamMember = { name: string; role: string; quote: string; initial: string };
+
 type Product = typeof PRODUCTS[0];
 
 interface ProductSectionsProps {
@@ -62,10 +64,10 @@ export default function ProductSections({ setModalProduct }: ProductSectionsProp
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {SERVICES.map((s, i) => (
               <button key={i} onClick={() => setActiveService(i)}
-                className={`reveal group relative flex flex-col gap-4 border p-6 text-left transition-all duration-300
+                className={`reveal group relative flex flex-col gap-4 border p-6 text-left transition-all duration-300 card-shine
                   ${activeService === i
-                    ? 'border-neon bg-neon/10 shadow-[0_0_30px_rgba(255,107,53,0.2)]'
-                    : 'border-ivory/8 bg-[#0A1628]/50 hover:border-neon/40 hover:bg-neon/5'}`}>
+                    ? 'border-[var(--neon-terra)] bg-[var(--neon-terra)]/10 shadow-[0_0_32px_rgba(232,89,12,0.22)]'
+                    : 'border-ivory/8 bg-[var(--surface)]/60 hover:border-[var(--neon-terra)]/40 hover:bg-[var(--surface)]'}`}>
                 <span className="text-[10px] font-bold text-neon/50">{s.n}</span>
                 <Icon name={s.icon} size={28}
                   className={`transition-colors ${activeService === i ? 'text-neon' : 'text-ivory/40 group-hover:text-neon/70'}`}
@@ -97,7 +99,7 @@ export default function ProductSections({ setModalProduct }: ProductSectionsProp
               { icon: 'Truck',       title: 'Логистика по России',       desc: 'Собственный парк спецтехники. Доставка в любую точку РФ.' },
               { icon: 'Award',       title: 'Допуск Ростехнадзора',      desc: 'Работаем с объектами повышенной опасности. Все допуски и СРО — в наличии.' },
             ].map((a, i) => (
-              <div key={i} className="reveal group flex flex-col gap-4 bg-deep p-8 transition-all duration-300 hover:bg-cosmic hover:shadow-[inset_0_0_30px_rgba(255,107,53,0.05)]">
+              <div key={i} className="reveal group card-shine flex flex-col gap-4 bg-[var(--cosmic)] p-8 transition-all duration-300 hover:bg-[var(--surface)] hover:shadow-[inset_0_0_40px_rgba(232,89,12,0.06)]">
                 <Icon name={a.icon} size={28} className="text-neon" fallback="Check" />
                 <h3 className="text-lg font-black uppercase">{a.title}</h3>
                 <p className="text-sm font-light leading-relaxed text-ivory/45">{a.desc}</p>
@@ -117,31 +119,27 @@ export default function ProductSections({ setModalProduct }: ProductSectionsProp
             </h2>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {TEAM.map((m, i) => (
+            {(TEAM as TeamMember[]).map((m, i) => (
               <div key={i} className="reveal card-flip h-72">
                 <div className="card-flip-inner">
                   {/* Front */}
-                  <div className="card-front glass flex flex-col justify-between p-6">
-                    <div className="flex h-16 w-16 items-center justify-center bg-gradient-to-br from-neon to-gold text-2xl font-black text-white">
+                  <div className="card-front glass-warm card-shine flex flex-col justify-between p-6">
+                    <div className="flex h-16 w-16 items-center justify-center bg-gradient-to-br from-[var(--neon-terra)] to-[var(--gold)] text-2xl font-black text-white shadow-[0_0_20px_rgba(232,89,12,0.4)]">
                       {m.initial}
                     </div>
                     <div>
-                      <div className="mb-1 text-xs font-bold uppercase tracking-widest text-neon/70">{m.role}</div>
-                      <div className="text-lg font-bold leading-snug">{m.name}</div>
-                      {m.contact && (
-                        <a href={`tel:${m.contact.replace(/\D/g, '')}`}
-                          className="mt-2 block text-xs text-ivory/40 hover:text-neon transition-colors">{m.contact}</a>
-                      )}
+                      <div className="mb-1 text-[10px] font-bold uppercase tracking-widest text-[var(--accent-hot)]/70">{m.role}</div>
+                      <div className="text-lg font-bold leading-snug text-ivory">{m.name}</div>
                     </div>
-                    <div className="flex items-center gap-1 text-[10px] font-semibold text-ivory/25 uppercase tracking-widest">
-                      <span>Наведи чтобы узнать больше</span>
+                    <div className="text-[10px] font-semibold text-ivory/20 uppercase tracking-widest">
+                      Наведи чтобы узнать больше
                     </div>
                   </div>
                   {/* Back */}
-                  <div className="card-back glass flex flex-col justify-center gap-4 border border-neon/20 p-6">
-                    <Icon name="Quote" size={24} className="text-neon/50" />
-                    <p className="text-base font-light italic leading-relaxed text-ivory/80">{m.quote}</p>
-                    <div className="text-xs font-bold uppercase tracking-widest text-neon">{m.name.split(' ')[0]}</div>
+                  <div className="card-back glass-warm flex flex-col justify-center gap-4 border border-[var(--neon-terra)]/25 p-6">
+                    <Icon name="Quote" size={24} className="text-[var(--gold)]/60" />
+                    <p className="text-sm font-light italic leading-relaxed text-ivory/80">{m.quote}</p>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--accent-hot)]">{m.name.split(' ')[0]}</div>
                   </div>
                 </div>
               </div>

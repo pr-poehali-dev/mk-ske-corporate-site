@@ -21,7 +21,7 @@ export default function HeroHeader({
   setModalProduct,
 }: HeroHeaderProps) {
   const headerBg = scrollY > 60
-    ? 'bg-[#0A1628]/90 backdrop-blur-2xl shadow-[0_2px_40px_rgba(0,0,0,0.5)]'
+    ? 'bg-[#080f1a]/92 backdrop-blur-2xl shadow-[0_2px_48px_rgba(0,0,0,0.7)]'
     : 'bg-transparent';
 
   const heroImg = 'https://cdn.poehali.dev/projects/a2934bf5-8e81-4cb0-9b6c-5d872f34bf3c/bucket/3165c493-09f8-484b-acea-228394cee739.jpeg';
@@ -64,7 +64,7 @@ export default function HeroHeader({
         </div>
 
         {menuOpen && (
-          <nav className="flex flex-col border-t border-ivory/10 bg-[#0A1628] px-6 py-4 lg:hidden">
+          <nav className="flex flex-col border-t border-ivory/8 bg-[#080f1a] px-6 py-4 lg:hidden">
             {NAV.map(n => (
               <button key={n.id} onClick={() => { scrollTo(n.id); setMenuOpen(false); }}
                 className="py-3 text-left text-sm font-semibold uppercase tracking-[0.18em] text-ivory/80 hover:text-neon">
@@ -80,7 +80,7 @@ export default function HeroHeader({
       <section id="hero" className="relative flex h-screen min-h-[700px] items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroImg})`, transform: `translateY(${scrollY * 0.38}px) scale(1.12)` }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/75 via-[#0A1628]/65 to-[#0A1628]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080f1a]/80 via-[#080f1a]/60 to-[#080f1a]" />
         <div className="absolute inset-0 grid-lines" />
 
         <div className="absolute left-6 top-24 h-20 w-px bg-neon/30 md:left-16" />
@@ -92,7 +92,7 @@ export default function HeroHeader({
           <div className="animate-fade-up mb-6 flex items-center gap-4" style={{ animationDelay: '0.05s' }}>
             <span className="h-px w-14 bg-gradient-to-r from-transparent to-neon" />
             <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-neon">
-              Металлоконструкции · Оренбург · с 2009
+              Металлоконструкции · Оренбург · Россия
             </span>
             <span className="h-px w-14 bg-gradient-to-l from-transparent to-neon" />
           </div>
@@ -131,9 +131,9 @@ export default function HeroHeader({
       <div className="glow-line w-full" />
 
       {/* ── STATS ── */}
-      <section className="bg-deep py-0">
+      <section className="bg-[#080f1a] py-0">
         <div className="container-pad mx-auto max-w-7xl">
-          <div className="grid grid-cols-2 gap-px bg-ivory/5 lg:grid-cols-6">
+          <div className="grid grid-cols-2 gap-px bg-[var(--deep-blue)] lg:grid-cols-6">
             {STATS.map((s, i) => (
               <StatCard key={i} {...s} />
             ))}

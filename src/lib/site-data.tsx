@@ -11,6 +11,7 @@ export const IMG = {
   close:     'https://cdn.poehali.dev/projects/a2934bf5-8e81-4cb0-9b6c-5d872f34bf3c/bucket/45ebfdef-b919-498f-b9a7-c5c3de1cd703.jpg',
   cad:       'https://cdn.poehali.dev/projects/a2934bf5-8e81-4cb0-9b6c-5d872f34bf3c/bucket/fc231111-ae61-4b69-9ab2-71ff580b5ce7.png',
   blueprint: 'https://cdn.poehali.dev/projects/a2934bf5-8e81-4cb0-9b6c-5d872f34bf3c/bucket/4377bd96-564f-4c3d-872d-860dc94296a6.jpg',
+  welder:    'https://cdn.poehali.dev/projects/a2934bf5-8e81-4cb0-9b6c-5d872f34bf3c/bucket/48a0e6c2-68d8-4d02-93f2-976aa492f426.jpg',
 };
 
 /* ─── Nav ─── */
@@ -29,7 +30,7 @@ export const STATS = [
   { value: 2600, suffix: '',  unit: 'м² цехов' },
   { value: 60,   suffix: '+', unit: 'ед. техники' },
   { value: 40,   suffix: '+', unit: 'специалистов' },
-  { value: 5,    suffix: '',  unit: 'филиалов РФ' },
+  { value: 2000, suffix: '+', unit: 'изделий в год' },
   { value: 15,   suffix: '+', unit: 'лет на рынке' },
 ];
 
@@ -56,10 +57,10 @@ export const SERVICES = [
 
 /* ─── Team ─── */
 export const TEAM = [
-  { name: 'Трофимов Евгений Павлович', role: 'Генеральный директор',             contact: undefined,          quote: '«Качество — это не случайность. Это результат высоких намерений, искренних усилий и умелого исполнения.»', initial: 'Т' },
-  { name: 'Кужамбетов Марат Олегович', role: 'Директор производства',            contact: '+7 987 876 70 37', quote: '«Каждая конструкция — это наш след в инфраструктуре страны.»', initial: 'К' },
-  { name: 'Баимов Азат Салаватович',   role: 'Инженер по развитию производства', contact: undefined,          quote: '«Инновации в производстве — путь к превосходству над конкурентами.»', initial: 'Б' },
-  { name: 'Хаметов Марсель',           role: 'Коммерческий директор',            contact: '+7 922 557 40 15', quote: '«Наши клиенты получают не просто металл — они получают уверенность.»', initial: 'Х' },
+  { name: 'Трофимов Евгений Павлович', role: 'Генеральный директор',             quote: '«Качество — это не случайность. Это результат высоких намерений, искренних усилий и умелого исполнения.»', initial: 'Т' },
+  { name: 'Кужамбетов Марат Олегович', role: 'Директор производства',            quote: '«Каждая конструкция — это наш след в инфраструктуре страны.»', initial: 'К' },
+  { name: 'Баимов Азат Салаватович',   role: 'Инженер по развитию производства', quote: '«Инновации в производстве — путь к превосходству над конкурентами.»', initial: 'Б' },
+  { name: 'Хаметов Марсель',           role: 'Коммерческий директор',            quote: '«Наши клиенты получают не просто металл — они получают уверенность.»', initial: 'Х' },
 ];
 
 /* ─── Clients ─── */
@@ -84,11 +85,13 @@ export function Label({ children, center }: { children: React.ReactNode; center?
 export function StatCard({ value, suffix, unit }: { value: number; suffix: string; unit: string }) {
   const { value: v, ref } = useCountUp(value);
   return (
-    <div ref={ref} className="bg-deep flex flex-col items-center justify-center gap-1 py-10 px-4 text-center">
-      <div className="text-4xl font-black leading-none text-neon lg:text-5xl">
+    <div ref={ref}
+      className="group relative flex flex-col items-center justify-center gap-2 overflow-hidden bg-cosmic px-4 py-12 text-center transition-all duration-300 hover:bg-surface">
+      <div className="absolute inset-x-0 bottom-0 h-0.5 w-0 bg-gradient-to-r from-[var(--neon-terra)] to-[var(--gold)] transition-all duration-500 group-hover:w-full" />
+      <div className="text-4xl font-black leading-none text-[var(--accent-hot)] lg:text-5xl xl:text-6xl">
         {v.toLocaleString('ru-RU')}{suffix}
       </div>
-      <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-ivory/35">{unit}</div>
+      <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-ivory/30">{unit}</div>
     </div>
   );
 }

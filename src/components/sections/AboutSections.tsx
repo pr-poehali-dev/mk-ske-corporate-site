@@ -1,3 +1,4 @@
+import Icon from '@/components/ui/icon';
 import { IMG, scrollTo, Label } from '@/lib/site-data';
 
 export default function AboutSections() {
@@ -39,18 +40,53 @@ export default function AboutSections() {
           </div>
 
           {/* Cycle */}
-          <div className="reveal mt-20">
-            <div className="mb-8 text-center">
+          <div className="reveal mt-24">
+            <div className="mb-12 text-center">
               <Label>Наш цикл</Label>
-              <h3 className="mt-3 text-2xl font-black uppercase">От идеи до объекта</h3>
+              <h3 className="mt-4 text-3xl font-black uppercase md:text-4xl">От идеи до объекта</h3>
+              <p className="mx-auto mt-3 max-w-xl text-sm font-light text-ivory/45">
+                Полный производственный цикл под одной крышей — от первого эскиза до отгрузки готовой конструкции
+              </p>
             </div>
-            <div className="grid grid-cols-2 gap-px bg-ivory/5 md:grid-cols-4 lg:grid-cols-8">
-              {['Идея', 'Проект', 'Чертежи', 'Раскрой', 'Сварка', 'Покраска', 'Контроль', 'Отгрузка'].map((s, i) => (
-                <div key={s} className="bg-cosmic flex flex-col items-center gap-2 p-5 text-center transition-colors hover:bg-[#25354A]">
-                  <span className="text-xs font-bold text-neon/50">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="text-sm font-semibold">{s}</span>
+
+            {/* Photo + steps grid */}
+            <div className="grid gap-6 lg:grid-cols-3">
+              {/* Photo block */}
+              <div className="relative overflow-hidden lg:row-span-2">
+                <img src={IMG.welder} alt="Сварка на производстве МК СКЭ"
+                  className="h-full min-h-[320px] w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-deep via-deep/30 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="text-xs font-bold uppercase tracking-widest text-neon mb-1">Производство</div>
+                  <div className="text-xl font-black text-ivory">Сварка мирового уровня</div>
+                  <div className="mt-1 text-sm text-ivory/50">Сертифицированные сварщики, контроль швов ультразвуком</div>
                 </div>
-              ))}
+              </div>
+
+              {/* Steps 2×4 */}
+              <div className="lg:col-span-2 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-4 lg:row-span-2 content-start">
+                {[
+                  { icon: 'Lightbulb',   title: 'Идея',      desc: 'Анализ задачи, ТЗ, консультация инженера' },
+                  { icon: 'PenTool',     title: 'Проект',    desc: 'CAD/BIM-проектирование, согласование' },
+                  { icon: 'FileText',    title: 'Чертежи',   desc: 'Разработка КМ и КМД, спецификации' },
+                  { icon: 'Scissors',    title: 'Раскрой',   desc: 'ЧПУ-раскрой с минимальным отходом' },
+                  { icon: 'Zap',         title: 'Резка',     desc: 'Плазма и лазер: точность ±0.1 мм' },
+                  { icon: 'Flame',       title: 'Сварка',    desc: 'МИГ/МАГ/ТИГ, контроль ультразвуком' },
+                  { icon: 'Layers',      title: 'Покраска',  desc: 'Двухслойное покрытие, срок 25+ лет' },
+                  { icon: 'PackageCheck','title': 'Отгрузка', desc: 'Проверка, документы, доставка по РФ' },
+                ].map((step, i) => (
+                  <div key={step.title}
+                    className="group relative flex flex-col gap-3 border border-ivory/8 bg-cosmic/60 p-4 transition-all duration-300 hover:border-accent/50 hover:bg-cosmic hover:shadow-[0_0_20px_rgba(var(--accent-rgb),0.1)]">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[9px] font-black text-accent/50">{String(i + 1).padStart(2,'0')}</span>
+                      <Icon name={step.icon} size={18} className="text-accent/60 group-hover:text-accent transition-colors" fallback="Check" />
+                    </div>
+                    <div className="text-sm font-black uppercase tracking-wide text-ivory">{step.title}</div>
+                    <div className="text-[11px] font-light leading-relaxed text-ivory/40">{step.desc}</div>
+                    <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-accent to-gold transition-all duration-500 group-hover:w-full" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
