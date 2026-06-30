@@ -167,3 +167,23 @@
     transform: translateY(0);
   }
 }
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.glow-line {
+  background: linear-gradient(90deg, transparent, #d97a4a, transparent);
+  height: 1px;
+  box-shadow: 0 0 16px 2px rgba(217, 122, 74, 0.4);
+}

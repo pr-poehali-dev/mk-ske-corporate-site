@@ -86,10 +86,20 @@ export default function Index() {
               </button>
             ))}
           </nav>
-          <div className="flex items-center gap-4">
-            <a href="tel:88001015600" className="hidden text-sm font-semibold tracking-wide text-ivory md:block">
+          <div className="flex items-center gap-3">
+            <a
+              href="tel:88001015600"
+              className="hidden items-center gap-2 rounded-none border border-terracotta/40 bg-terracotta/10 px-4 py-2 text-sm font-bold tracking-wide text-terracotta transition-colors hover:bg-terracotta hover:text-white md:flex"
+            >
+              <Icon name="Phone" size={14} />
               8 800 101-56-00
             </a>
+            <button
+              onClick={() => scrollTo('contacts')}
+              className="hidden rounded-none bg-terracotta px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-white hover:bg-terracotta/90 lg:block"
+            >
+              Заявка
+            </button>
             <button onClick={() => setMenuOpen(!menuOpen)} className="text-ivory lg:hidden">
               <Icon name={menuOpen ? 'X' : 'Menu'} size={26} />
             </button>
@@ -168,6 +178,9 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Glowing divider */}
+      <div className="glow-line w-full" />
+
       {/* STATS */}
       <section className="border-y border-ivory/10 bg-charcoal">
         <div className="container-pad mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">
@@ -191,6 +204,67 @@ export default function Index() {
               Работаем без посредников. В составе группы — строительно-монтажная компания ООО «СКЭ»
               и транспортно-логистическая компания ООО «К2».
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* VIDEO */}
+      <section className="border-t border-ivory/10 bg-charcoal section-pad">
+        <div className="container-pad mx-auto max-w-7xl">
+          <div className="reveal mb-12 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <SectionLabel>О компании · видео</SectionLabel>
+              <h2 className="mt-4 text-4xl font-black uppercase leading-none sm:text-5xl">Наше производство</h2>
+            </div>
+            <p className="max-w-xs text-sm font-light leading-relaxed text-ivory/50">
+              Взгляните изнутри — цеха, оборудование, команда и готовые конструкции
+            </p>
+          </div>
+
+          <div className="reveal grid gap-6 lg:grid-cols-5">
+            {/* Main video embed */}
+            <div className="relative overflow-hidden lg:col-span-3">
+              <div className="relative aspect-video w-full overflow-hidden bg-anthracite">
+                <iframe
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&color=white"
+                  title="ООО МК СКЭ — производство металлоконструкций"
+                  className="absolute inset-0 h-full w-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div className="mt-3 text-xs text-ivory/30 tracking-wide">
+                * Замените ссылку на ваше видео о производстве
+              </div>
+            </div>
+
+            {/* Side info */}
+            <div className="flex flex-col justify-between gap-6 lg:col-span-2">
+              <div className="border-l-2 border-terracotta pl-6">
+                <p className="text-lg font-light leading-relaxed text-ivory/80">
+                  Более 15 лет мы строим инфраструктуру связи по всей России — от чертежа до готового объекта.
+                </p>
+              </div>
+              <div className="space-y-4">
+                {[
+                  { n: '220+', t: 'тонн металла ежемесячно' },
+                  { n: '5', t: 'филиалов в России' },
+                  { n: '60+', t: 'единиц техники' },
+                ].map((item) => (
+                  <div key={item.n} className="flex items-center gap-4 border-b border-ivory/10 pb-4 last:border-0">
+                    <span className="min-w-[60px] text-2xl font-black text-terracotta">{item.n}</span>
+                    <span className="text-sm text-ivory/60">{item.t}</span>
+                  </div>
+                ))}
+              </div>
+              <Button
+                onClick={() => scrollTo('contacts')}
+                className="w-full rounded-none bg-terracotta py-6 text-sm font-bold uppercase tracking-[0.15em] text-white hover:bg-terracotta/90"
+              >
+                Оставить заявку
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -263,29 +337,53 @@ export default function Index() {
             ))}
           </div>
         </div>
+
+        {/* Marquee ticker */}
+        <div className="mt-16 overflow-hidden border-t border-ivory/10 py-5">
+          <div className="marquee-track flex gap-10 whitespace-nowrap">
+            {[...CLIENTS, ...CLIENTS].map((c, i) => (
+              <span key={i} className="text-sm font-semibold uppercase tracking-[0.2em] text-ivory/30">
+                {c} <span className="mx-4 text-terracotta">◆</span>
+              </span>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* CONTACTS */}
-      <section id="contacts" className="section-pad border-t border-ivory/10 bg-anthracite">
+      <section id="contacts" className="border-t border-ivory/10 bg-anthracite pt-20 md:pt-28">
         <div className="container-pad mx-auto max-w-7xl">
-          <div className="grid gap-16 lg:grid-cols-2">
-            <div className="reveal">
-              <SectionLabel>Контакты</SectionLabel>
-              <a href="tel:88001015600" className="mt-8 block text-4xl font-black tracking-tight text-ivory transition-colors hover:text-terracotta sm:text-6xl">
+          {/* Phone hero */}
+          <div className="reveal mb-14 border-b border-ivory/10 pb-10">
+            <SectionLabel>Контакты</SectionLabel>
+            <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <a
+                href="tel:88001015600"
+                className="text-5xl font-black tracking-tight text-ivory transition-colors hover:text-terracotta sm:text-7xl lg:text-8xl"
+              >
                 8 800 101-56-00
               </a>
-              <div className="mt-10 space-y-4 text-lg font-light">
-                <Row icon="Mail"><a href="mailto:mkske@mkske.ru" className="hover:text-terracotta">mkske@mkske.ru</a></Row>
-                <Row icon="Globe"><a href="https://ooo-ske.ru" target="_blank" rel="noreferrer" className="hover:text-terracotta">ooo-ske.ru</a></Row>
-                <Row icon="MapPin">Оренбург, ул. Донгузская, 68</Row>
-              </div>
-              <div className="mt-10 overflow-hidden border border-ivory/10">
-                <iframe
-                  title="Карта проезда"
-                  src="https://yandex.ru/map-widget/v1/?text=Оренбург%2C%20улица%20Донгузская%2C%2068&z=16"
-                  className="h-[280px] w-full grayscale"
-                  frameBorder="0"
-                />
+              <span className="text-sm font-light text-ivory/40">Звонок бесплатный по России</span>
+            </div>
+          </div>
+
+          {/* Two columns: info + form */}
+          <div className="grid gap-16 pb-0 lg:grid-cols-2 lg:gap-20">
+            <div className="reveal space-y-5 text-base font-light">
+              <Row icon="Mail"><a href="mailto:mkske@mkske.ru" className="hover:text-terracotta">mkske@mkske.ru</a></Row>
+              <Row icon="Globe"><a href="https://ooo-ske.ru" target="_blank" rel="noreferrer" className="hover:text-terracotta">ooo-ske.ru</a></Row>
+              <Row icon="MapPin">Оренбург, ул. Донгузская, 68</Row>
+              <Row icon="User">Директор производства: Кужамбетов Марат Олегович · +7 987 876 70 37</Row>
+              <Row icon="FileText">Тендерный отдел: Баимова Анна · +7 922 557 40 15</Row>
+              <div className="mt-4 flex gap-3 pt-2">
+                <a href="https://wa.me/79878767037" target="_blank" rel="noreferrer"
+                  className="flex h-11 w-11 items-center justify-center border border-ivory/15 transition-colors hover:border-terracotta hover:bg-terracotta">
+                  <Icon name="MessageCircle" size={18} />
+                </a>
+                <a href="https://t.me/" target="_blank" rel="noreferrer"
+                  className="flex h-11 w-11 items-center justify-center border border-ivory/15 transition-colors hover:border-terracotta hover:bg-terracotta">
+                  <Icon name="Send" size={18} />
+                </a>
               </div>
             </div>
 
@@ -294,9 +392,10 @@ export default function Index() {
                 <h3 className="text-2xl font-black uppercase">Оставить заявку</h3>
                 <Input required placeholder="Ваше имя" className="h-14 rounded-none border-0 border-b border-ivory/20 bg-transparent px-0 text-ivory placeholder:text-ivory/40 focus-visible:border-terracotta focus-visible:ring-0" />
                 <Input required type="tel" placeholder="Телефон" className="h-14 rounded-none border-0 border-b border-ivory/20 bg-transparent px-0 text-ivory placeholder:text-ivory/40 focus-visible:border-terracotta focus-visible:ring-0" />
+                <Input type="email" placeholder="Email" className="h-14 rounded-none border-0 border-b border-ivory/20 bg-transparent px-0 text-ivory placeholder:text-ivory/40 focus-visible:border-terracotta focus-visible:ring-0" />
                 <label className="flex cursor-pointer items-center gap-3 border border-dashed border-ivory/25 px-4 py-4 text-sm text-ivory/60 transition-colors hover:border-terracotta">
                   <Icon name="Paperclip" size={18} className="text-terracotta" />
-                  Прикрепить чертёж
+                  Прикрепить чертёж / ТЗ
                   <input type="file" className="hidden" />
                 </label>
                 <Button type="submit" className="w-full rounded-none bg-terracotta py-7 text-sm font-bold uppercase tracking-[0.15em] text-white hover:bg-terracotta/90">
@@ -305,6 +404,17 @@ export default function Index() {
               </form>
             </div>
           </div>
+        </div>
+
+        {/* Map — full width */}
+        <div className="mt-16 overflow-hidden border-t border-ivory/10">
+          <iframe
+            title="Карта проезда"
+            src="https://yandex.ru/map-widget/v1/?text=Оренбург%2C%20улица%20Донгузская%2C%2068&z=16&theme=light"
+            className="h-[420px] w-full"
+            frameBorder="0"
+            style={{ filter: 'saturate(1.4) contrast(1.1)' }}
+          />
         </div>
       </section>
 
