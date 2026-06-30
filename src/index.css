@@ -4,35 +4,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 38 30% 93%;
+    --foreground: 210 53% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 210 53% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 53% 11%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 210 64% 11%;
+    --primary-foreground: 38 30% 93%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 216 7% 19%;
+    --secondary-foreground: 38 30% 93%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 38 20% 88%;
+    --muted-foreground: 210 15% 40%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 20 64% 57%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 38 15% 82%;
+    --input: 38 15% 82%;
+    --ring: 20 64% 57%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -97,5 +97,56 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: "Montserrat", sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-charcoal {
+    color: #0a1c2e;
+  }
+  .bg-charcoal {
+    background-color: #0a1c2e;
+  }
+  .text-terracotta {
+    color: #d97a4a;
+  }
+  .bg-terracotta {
+    background-color: #d97a4a;
+  }
+  .text-ivory {
+    color: #f5f0e8;
+  }
+  .bg-ivory {
+    background-color: #f5f0e8;
+  }
+  .bg-anthracite {
+    background-color: #2c2f33;
+  }
+  .container-pad {
+    @apply px-6 md:px-12 lg:px-20;
+  }
+  .section-pad {
+    @apply py-20 md:py-28;
+  }
+  .grid-texture {
+    background-image:
+      linear-gradient(rgba(217, 122, 74, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(217, 122, 74, 0.07) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .animate-fade-up {
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

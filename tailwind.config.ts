@@ -18,7 +18,14 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Montserrat', 'sans-serif'],
+			},
 			colors: {
+				charcoal: '#0A1C2E',
+				terracotta: '#D97A4A',
+				ivory: '#F5F0E8',
+				anthracite: '#2C2F33',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
